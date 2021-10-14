@@ -3,9 +3,29 @@
 
 {% block content %}
 <h1 class="display-4 text-success">Profiles Home</h1>
-{{ profile.username }}
+Username: {{ user_data.username }}
 <br>
-{{ profile.date_joined }}
+Name: {{ user_data.first_name }} {{ user_data.last_name }}
 <br>
-{{ user.profile.avatar }}
+Date Joined: {{ user_data.date_joined }}
+<br>
+Avatar: {{ user_profile.avatar }}
+<br>
+Bio: {{ user_profile.bio }}
+<br>
+Location: {{ user_profile.location }}
+<br>
+Signature: {{ user_profile.signature }}
+
+{% if user.is_authenticated %}
+<br>
+Email: {{ user_data.email }}
+<br>
+Premium?: {{ user_profile.premium }}
+<br>
+DoB: {{ user_profile.birth_date }}
+{% endif %}
+
+
+
 {% endblock %}
