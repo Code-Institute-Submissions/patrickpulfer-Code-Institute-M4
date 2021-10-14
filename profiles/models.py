@@ -9,7 +9,7 @@ class Profile(models.Model):
     user = models.OneToOneField(
         User, related_name='profile', on_delete=models.CASCADE)
     avatar = models.ImageField(
-        default='default.jpg', upload_to='profile_pics')
+        default='default.png', upload_to='profile_pics')
     bio = models.TextField(blank=True)
     signature = models.TextField(blank=True)
     premium = models.BooleanField(default=False)

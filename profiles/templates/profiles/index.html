@@ -2,29 +2,52 @@
 {% load static %}
 
 {% block content %}
-<h1 class="display-4 text-success">Profiles Home</h1>
-Username: {{ user_data.username }}
-<br>
-Name: {{ user_data.first_name }} {{ user_data.last_name }}
-<br>
-Date Joined: {{ user_data.date_joined }}
-<br>
-Avatar: {{ user_profile.avatar }}
-<br>
-Bio: {{ user_profile.bio }}
-<br>
-Location: {{ user_profile.location }}
-<br>
-Signature: {{ user_profile.signature }}
+<div class="container">
+    <div class="row">
+        <div class="container col-md-4">
+            <div class="card testimonial-card">
+                <div class="card-up indigo lighten-1"></div>
+                <div class="avatar mx-auto white">
+                    <img src="{% get_media_prefix %}/{{ user_profile.avatar }}" class="rounded-circle" alt="avatar">
 
-{% if user.is_authenticated %}
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ user_data.username }}</h4>
+                    <hr>
+                    <p>Name: {{ user_data.first_name }} {{ user_data.last_name }}</p>
+                    <p>Bio:<br>
+                        {{ user_profile.bio }}
+                    </p>
+                    <p class="text-left">
+                        Joined: {{ user_data.date_joined }}
+                        <br>Email: {{ user_data.email }}
+                        <br>Location: {{ user_profile.location }}
+                        <br>DoB: {{ user_profile.birth_date }}
+                    </p>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="container col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"><a>Posts</a></h4>
+                    <p class="card-text">
+                        card's
+                        content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<h1 class="display-4 text-success">Profiles Home</h1>
 <br>
-Email: {{ user_data.email }}
-<br>
-Premium?: {{ user_profile.premium }}
-<br>
-DoB: {{ user_profile.birth_date }}
-{% endif %}
+
+
 
 
 
