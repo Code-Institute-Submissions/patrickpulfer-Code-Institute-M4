@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h1 class="display-4 text-success">Profiles Home</h1>
+{{ profile.username }}
+<br>
+{{ profile.date_joined }}
+<br>
+{{ user.profile.avatar }}
+{% endblock %}
