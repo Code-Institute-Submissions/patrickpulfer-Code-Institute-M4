@@ -5,7 +5,8 @@ from django.db.models.fields import NullBooleanField
 
 # Forum Model
 class Forum(models.Model):
-    name = models.CharField(max_length=20, default="anonymous")
+    forum_name = models.CharField(
+        max_length=20, unique=True)
     topic = models.CharField(max_length=300)
     description = models.CharField(max_length=1000, blank=True)
     link = models.CharField(max_length=100, blank=True)
@@ -31,7 +32,7 @@ class Discussion(models.Model):
     body = models.CharField(max_length=1000)
 
     def __str__(self):
-        return str(self.forum)
+        return str(self.title)
 
 
 # Comments Model

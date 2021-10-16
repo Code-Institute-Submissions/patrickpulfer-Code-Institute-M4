@@ -3,4 +3,30 @@
 
 {% block content %}
 <h1 class="display-4 text-success">Forum Home</h1>
-{% endblock %}
+<div class="container my-5">
+
+    <section class="dark-grey-text">
+        <div class="row">
+
+            {% for forum in forums %}
+            <div class="col-md-6 mb-4">
+                <a href="/forum/{{ forum.forum_name }}" class="card hoverable">
+                    <div class="card-body">
+                        <p><i class="fas fa-comments fa-3x text-primary"></i></p>
+                        <h5 class="dark-grey-text my-4">{{ forum.topic }}</h5>
+                        <p class="text-muted font-weight-light mb-0">{{ forum.description }}</p>
+                    </div>
+                </a>
+            </div>
+            {% if forloop.counter|divisibleby:2 %}
+        </div>
+    </section>
+    {% if not forloop.last %}
+    <section class="dark-grey-text">
+        <div class="row">
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        {% endblock %}
