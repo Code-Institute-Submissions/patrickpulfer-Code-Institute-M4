@@ -3,11 +3,18 @@
 {% load i18n %}
 {% load account socialaccount %}
 
+
+
+
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
 
-<h1>{% trans "Sign In" %}test</h1>
+{% block logo1 %}
+{% include "main_logo.html" %}
+{% endblock %}
+
+<h1>{% trans "Sign In" %}</h1>
 
 {% get_providers as socialaccount_providers %}
 

@@ -1,0 +1,18 @@
+body {
+    background-color: #FCF6F5FF;
+}
+
+/* Bootstrap Navbar */
+	.navbar-custom, .dropdown-item, .navbar-nav {
+		background-color: #990011FF;
+		color: #FCF6F5FF !important;
+	}
+
+	.navbar-custom .navbar-nav .dropdown-menu {
+		background-color: #990011FF;
+	}
+
+.title-color, h1 {
+	color: #990011FF;
+}
+
