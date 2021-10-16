@@ -39,7 +39,8 @@ class Discussion(models.Model):
 
 # Comments Model
 class Comment(models.Model):
-    poster = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
+    poster = models.ForeignKey(
+        User, blank=True, on_delete=models.CASCADE, related_name='comments')
     discussion = models.ForeignKey(
         Discussion, blank=True, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
