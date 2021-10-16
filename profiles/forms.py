@@ -16,11 +16,11 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('birth_date', 'location', 'bio', 'signature',)
+        fields = ('birth_date', 'location', 'bio', 'signature', 'avatar')
         widgets = {
             'location': forms.TextInput(attrs={'class': 'form-control'}),
             'bio': forms.Textarea(attrs={'class': 'form-control'}),
             'signature': forms.TextInput(attrs={'class': 'form-control'}),
-            'avatar': forms.ImageField(),
-            #  'birth_date': forms.TextInput(attrs={'class': 'form-control'}),
+            'avatar': forms.FileInput(),
+            'birth_date': forms.DateInput(format=('%Y-%m-%d'), attrs={'class': 'form-control dateinput', 'placeholder': 'Select a date', 'type': 'date'}),
         }
