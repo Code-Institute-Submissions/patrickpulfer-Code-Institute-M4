@@ -6,9 +6,9 @@
     <section class="dark-grey-text">
         <h2 class="title-color text-center font-weight-bold mb-4 pb-2">{{ forum_data.topic }}</h2>
         <p class="text-center mx-auto w-responsive mb-5">{{ forum_data.description }}</p>
-
+        <hr class="my-4">
         {% for discussion in discussions_data %}
-        <div class="row align-items-center">
+        <div class="row align-items-top">
             <div class="col-lg-5 col-xl-4">
                 <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
                     <img class="img-fluid" src="{% get_media_prefix %}{{ discussion.picture }}" alt="Post Image">
@@ -23,7 +23,8 @@
                 <p class="dark-grey-text">{{ discussion.body }}</p>
                 <p>by <a href="/profile/{{ discussion.poster }}" class="font-weight-bold">{{ discussion.poster }}</a>,
                     {{ discussion.date_created }} </p>
-                <a class="btn btn-primary btn-md mx-0 btn-rounded"></a>
+                <a href="discussion/{{ discussion.title }}" class=" btn custom-btn btn-md btn-rounded">View
+                    Discussion</a>
             </div>
         </div>
         <hr class="my-5">

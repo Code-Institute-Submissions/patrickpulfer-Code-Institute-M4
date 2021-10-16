@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <section class="mx-md-5 dark-grey-text">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-cascade wider reverse">
+                    <div class="view view-cascade overlay">
+                        <img class="card-img-top" src="{% get_media_prefix %}{{ discussion.picture }}"
+                            alt="Discussion Picture">
+                        <a href="#!">
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+                    <div class="card-body card-body-cascade text-center">
+                        <h3 class="font-weight-bold title-color"><a>{{ discussion.title }}</a></h3>
+                        <p>{{ discussion.body }}</p>
+                        <a href="/profile/{{ discussion.poster }}" class="badge badge-danger badge-pill darken-4"><i
+                                class="fas fa-user"></i>
+                            {{ discussion.poster }}</a>
+                        <a href="/forum/{{ discussion.forum }}" class="badge badge-danger badge-pill darken-4"><i
+                                class="fas fa-book-open"></i>
+                            {{ discussion.forum }}</a>
+                        <badge class="badge badge-danger badge-pill darken-4"><i class="fa fa-calendar"></i>
+                            {{ discussion.date_created }}</badge>
+                    </div>
+                </div>
+                <div class="mt-5">
+                    Comments here
+                </div>
+            </div>
+        </div>
+        <hr class="mb-5 mt-4">
+    </section>
+</div>
+
+
+
+{% endblock %}

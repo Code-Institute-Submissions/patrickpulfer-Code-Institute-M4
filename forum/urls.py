@@ -4,5 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('<param_forum_name>', views.forum, name='param_forum_name')
+    path('<param_forum_name>', views.forum, name='param_forum_name'),
+    path('discussion/<param_discussion>',
+         views.discussion_view, name='param_discussion')
 ]

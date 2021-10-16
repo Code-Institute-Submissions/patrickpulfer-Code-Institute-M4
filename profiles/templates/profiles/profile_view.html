@@ -50,12 +50,12 @@
                     <p class="card-text">
                         {% for discussion in discussions %}
 
-                    <div class="row align-items-center">
+                    <div class="row align-items-top">
                         <div class="col-lg-5 col-xl-4">
                             <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
                                 <img class="img-fluid" src="{% get_media_prefix %}{{ discussion.picture }}"
                                     alt="Post Image">
-                                <a>
+                                <a href="/discussion/{{ discussion.title }}">
                                     <div class="mask rgba-white-slight"></div>
                                 </a>
                             </div>
@@ -63,8 +63,11 @@
                         <div class="col-lg-7 col-xl-8">
                             <h4 class="font-weight-bold mb-3"><strong>{{ discussion.title }}</strong></h4>
                             <p class="dark-grey-text">{{ discussion.body }}</p>
+                            <a href="/discussion/{{ discussion.title }}" class="btn custom-btn btn-md btn-rounded">View
+                                Discussion</a>
                         </div>
                     </div>
+                    <br>
                     <a href="/forum/{{ discussion.forum }}" class="badge badge-danger badge-pill darken-4"><i
                             class="fas fa-book-open"></i>
                         {{ discussion.forum }}</a>

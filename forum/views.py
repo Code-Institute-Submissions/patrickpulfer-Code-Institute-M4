@@ -12,7 +12,7 @@ def forum(request, param_forum_name):
     print("Forum Name: " + param_forum_name)
     forum = get_object_or_404(Forum, forum_name=param_forum_name)
     discussions = Discussion.objects.filter(forum=forum.id)
-  #  poster = Discussion.objects.filter(poster=User.id)
+    #poster = Discussion.objects.filter(poster=User.id)
 
     #print("Forum Topic: ")
     # print(list(forum))
@@ -29,3 +29,12 @@ def forum(request, param_forum_name):
         #  'comments_data': comments
     }
     return render(request, 'forum/forum_view.html', context)
+
+
+def discussion_view(request, param_discussion):
+    discussion = get_object_or_404(Discussion, title=param_discussion)
+
+    context = {
+        'discussion': discussion,
+    }
+    return render(request, 'forum/discussion_view.html', context)
