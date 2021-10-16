@@ -2,6 +2,22 @@ body {
     background-color: #FCF6F5FF;
 }
 
+
+/* Overriding Link colors */
+	a:link, a:visited, a:hover, a:active {
+		color: #990011FF;
+	}
+
+
+
+/* Overriding Bootstrap colors */
+.danger-color, .btn-danger, .badge-danger, .custom-btn {
+	background-color: #990011FF !important;
+	color: #FCF6F5FF !important;
+}
+
+
+
 /* Bootstrap Navbar */
 	.navbar-custom, .dropdown-item, .navbar-nav {
 		background-color: #990011FF;
@@ -15,4 +31,3 @@ body {
 .title-color, h1 {
 	color: #990011FF;
 }
-
