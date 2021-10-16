@@ -3,14 +3,19 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 from .models import Profile
 from .forms import UserForm, ProfileForm
+from forum.models import Discussion, Forum
 
 
 def profiles(request, username):
     user = get_object_or_404(User, username=username)
     profile = get_object_or_404(Profile, user_id=user.id)
+    discussions = Discussion.objects.filter(poster=user.id)
+    ##forum = Forum.objects.filter(forum=discussions.id)
+
     context = {
         'user_data': user,
         'user_profile': profile,
+        'discussions': discussions,
     }
     return render(request, 'profiles/profile_view.html', context)
 

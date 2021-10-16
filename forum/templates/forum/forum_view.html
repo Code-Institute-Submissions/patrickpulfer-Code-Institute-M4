@@ -21,7 +21,8 @@
             <div class="col-lg-7 col-xl-8">
                 <h4 class="font-weight-bold mb-3"><strong>{{ discussion.title }}</strong></h4>
                 <p class="dark-grey-text">{{ discussion.body }}</p>
-                <p>by <a class="font-weight-bold">{{ discussion.poster }}</a>, {{ discussion.date_created }} </p>
+                <p>by <a href="/profile/{{ discussion.poster }}" class="font-weight-bold">{{ discussion.poster }}</a>,
+                    {{ discussion.date_created }} </p>
                 <a class="btn btn-primary btn-md mx-0 btn-rounded"></a>
             </div>
         </div>

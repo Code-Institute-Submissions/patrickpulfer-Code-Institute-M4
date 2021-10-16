@@ -15,7 +15,7 @@ class Forum(models.Model):
     premium_only = models.BooleanField(default=False, blank=True)
 
     def __str__(self):
-        return str(self.topic)
+        return str(self.forum_name)
 
 
 # Forum Post Model
