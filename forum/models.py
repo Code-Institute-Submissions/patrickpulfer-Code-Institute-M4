@@ -22,6 +22,8 @@ class Forum(models.Model):
 class Discussion(models.Model):
     forum = models.ForeignKey(Forum, blank=True, on_delete=models.CASCADE)
     poster = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
+    picture = models.ImageField(
+        default='post_pics/default.png', upload_to='post_pics')
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_modified = models.DateTimeField(auto_now=True)
     link = models.CharField(max_length=100, blank=True)
