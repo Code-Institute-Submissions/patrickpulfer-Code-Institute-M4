@@ -53,11 +53,18 @@
                             {% endfor %}
                         </section>
                     </div>
+                    {% if user.is_authenticated %}
                     <form method="post">
                         {% csrf_token %}
                         {{ comment_form.as_p }}
                         <button class="btn btn-info btn-sm" type="submit"><i class="fas fa-reply"></i> Reply</button>
                     </form>
+                    {% else %}
+                    <div class="container text-center">
+                        <a href="/accounts/login/" class="btn custom-btn btn-rounded"><i class="fas fa-reply"></i>
+                            Login or create an account to reply</a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

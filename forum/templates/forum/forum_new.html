@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="card mb-4 text-left">
+    <div class="card-body">
+        <h4 class="card-title">New Discussion in {{ forum_data.topic }} </h4>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="md-form">
+                {{ discussion_form.title }}
+                <label for="{{ discussion_form.title.id_for_label }}">Discussion Title:</label>
+            </div>
+            <p>
+                Add a picture: {{ discussion_form.picture }}
+            </p>
+            <div class="form-group purple-border">
+                <label class="text-left" for="{{ discussion_form.body.id_for_label }}">Your Discussion:</label>
+                {{ discussion_form.body }}
+            </div>
+            {{ discussion_form.premium_only }}
+
+            <button class="btn btn-success btn-rounded" type="submit">Submit</button>
+            <a href="" class="btn custom-btn btn-rounded">Cancel</a>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

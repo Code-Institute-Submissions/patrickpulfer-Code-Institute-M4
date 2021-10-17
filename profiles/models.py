@@ -11,6 +11,7 @@ class Profile(models.Model):
     avatar = models.ImageField(
         default='profile_pics/default.png', upload_to='profile_pics')
     bio = models.TextField(blank=True)
+    deleted = models.BooleanField(default=False)
     signature = models.TextField(blank=True)
     premium = models.BooleanField(default=False)
     location = models.CharField(max_length=30, blank=True)
