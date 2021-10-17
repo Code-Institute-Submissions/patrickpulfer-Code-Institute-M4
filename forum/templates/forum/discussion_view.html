@@ -25,6 +25,11 @@
                             {{ discussion.forum }}</a>
                         <badge class="badge badge-danger badge-pill darken-4"><i class="fa fa-calendar"></i>
                             {{ discussion.date_created }}</badge>
+                        {% if discussion.poster == request.user %}
+                        <br><br><a href="/forum/discussion/{{ discussion.title }}/edit"
+                            class="btn btn-success btn-rounded btn-sm">Edit
+                            Discussion</a>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="mt-5">

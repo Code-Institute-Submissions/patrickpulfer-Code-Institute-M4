@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="card-deck">
+        <div class="card mb-4 text-center">
+            <div class="card-body">
+                <h4 class="card-title text-left">Your Account</h4><br>
+                <i class="orange-text fas fa-exclamation-triangle fa-10x"></i>
+                <br><br>
+                <h4>Please be aware that this action will PERMANENTLY DELETE your account!</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<form method="post">
+    {% csrf_token %}
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

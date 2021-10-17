@@ -38,3 +38,20 @@ def profile_update(request):
         'user_form': user_form,
         'profile_form': profile_form
     })
+
+
+def profile_delete(request):
+    if request.method == 'POST' and request.user.is_authenticated:
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(
+            request.POST, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return HttpResponseRedirect('/')
+
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+
+        return render(request, 'profiles/profile_delete.html')
