@@ -53,11 +53,10 @@
                             {% endfor %}
                         </section>
                     </div>
-                    <form method="post" action="">
+                    <form method="post">
                         {% csrf_token %}
                         {{ comment_form.as_p }}
-                        <a class="btn btn-info btn-sm" type="submit"><i class="fas fa-reply"></i>
-                            Reply</a>
+                        <button class="btn btn-info btn-sm" type="submit"><i class="fas fa-reply"></i> Reply</button>
                     </form>
                 </div>
             </div>
