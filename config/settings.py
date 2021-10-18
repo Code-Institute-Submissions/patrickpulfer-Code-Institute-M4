@@ -32,7 +32,7 @@ STRIPE_ENDPOINT_SECRET = str(os.getenv('STRIPE_ENDPOINT_SECRET'))
 DEBUG = True
 
 ALLOWED_HOSTS = ['django-test-world-forums.herokuapp.com',
-                 'localhost'
+                 'localhost',
                  ]
 
 

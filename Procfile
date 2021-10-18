@@ -1,1 +1,1 @@
-web: gunicorn M4.wsgi:application --log-file
+web: gunicorn M4.wsgi:app
