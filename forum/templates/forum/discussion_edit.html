@@ -17,8 +17,9 @@
                         {{ discussion_form.title}}
                         <label for="{{ discussion_form.body.id_for_label }}">Title:</label>
                     </div>
-                    <div class="form-group purple-border">
-                        <label for="{{ discussion_form.body.id_for_label }}">Body:</label>
+                    <div>
+                        Body:<br>
+                        {{ discussion_form.media }}
                         {{ discussion_form.body }}
                     </div>
                     <button class="btn btn-success btn-rounded" type="submit">Save changes</button>

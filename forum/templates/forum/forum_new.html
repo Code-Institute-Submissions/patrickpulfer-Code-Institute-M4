@@ -15,9 +15,11 @@
             <p>
                 Add a picture: {{ discussion_form.picture }}
             </p>
-            <div class="form-group purple-border">
-                <label class="text-left" for="{{ discussion_form.body.id_for_label }}">Your Discussion:</label>
+            <div class="">
+                Your Discussion:<br>
+                {{ discussion_form.media }}
                 {{ discussion_form.body }}
+
             </div>
             {{ discussion_form.premium_only }}
 
