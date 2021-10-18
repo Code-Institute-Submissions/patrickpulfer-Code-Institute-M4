@@ -20,8 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 #SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
+
+ALLOWED_HOSTS = ['django-test-world-forums.herokuapp.com',
+                 'localhost', '127.0.0.1', ]
+
 if DEBUG:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', ]
+    #ALLOWED_HOSTS = ['localhost', '127.0.0.1', ]
 
     STRIPE_HOST_DOMAIN = 'http://127.0.0.1:8000'
     SECRET_KEY = str(os.getenv('SECRET_KEY'))
@@ -30,7 +34,7 @@ if DEBUG:
     STRIPE_ENDPOINT_SECRET = str(os.getenv('STRIPE_ENDPOINT_SECRET'))
 
 else:
-    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
+    #ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 
     STRIPE_HOST_DOMAIN = os.environ.get('HEROKU_HOSTNAME')
     SECRET_KEY = os.environ.get('SECRET_KEY')
