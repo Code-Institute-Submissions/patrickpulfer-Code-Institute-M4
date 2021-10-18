@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = str(os.getenv('SECRET_KEY'))
+#SECRET_KEY = str(os.getenv('SECRET_KEY'))
 STRIPE_PUBLISHABLE_KEY = str(os.getenv('STRIPE_PUBLIC_KEY'))
 STRIPE_SECRET_KEY = str(os.getenv('STRIPE_SECRET_KEY'))
 STRIPE_ENDPOINT_SECRET = str(os.getenv('STRIPE_ENDPOINT_SECRET'))
@@ -125,6 +125,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
+'''
 if DEBUG:
     DATABASES = {
         'default': {
@@ -136,7 +149,7 @@ else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
