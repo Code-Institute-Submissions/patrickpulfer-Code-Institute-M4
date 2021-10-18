@@ -32,6 +32,18 @@
                     {{ user_profile.bio }}
                 </div>
             </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    {% if user_profile.premium %}
+                    <img class="img-fluid" src="{% static 'img/logo_concierge.png' %}" alt="Concierge Service Badge">
+                    {% elif not user_profile.premium and user_data.username|lower == request.user|lower %}
+                    <a href="/payment/" class="btn btn-success btn-rounded btn-sm"><i class="fas fa-medal"></i>
+                        Go Premium</a>
+                    {% else %}
+                    Member
+                    {% endif %}
+                </div>
+            </div>
         </div>
         <div class="container col-md-8">
             {% if request.user.is_authenticated and user_data.id == request.user.id %}

@@ -48,10 +48,10 @@ def create_checkout_session(request):
                 mode='payment',
                 line_items=[
                     {
-                        'name': 'Concierge',
+                        'name': 'Concierge Service',
                         'quantity': 1,
                         'currency': 'eur',
-                        'amount': '2000',
+                        'amount': '1000',
                     }
                 ]
             )
