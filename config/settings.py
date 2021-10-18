@@ -19,13 +19,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 #SECRET_KEY = str(os.getenv('SECRET_KEY'))
-STRIPE_PUBLISHABLE_KEY = str(os.getenv('STRIPE_PUBLIC_KEY'))
-STRIPE_SECRET_KEY = str(os.getenv('STRIPE_SECRET_KEY'))
-STRIPE_ENDPOINT_SECRET = str(os.getenv('STRIPE_ENDPOINT_SECRET'))
-
 
 if DEBUG:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', ]
+
+    STRIPE_HOST_DOMAIN = 'http://127.0.0.1:8000'
     SECRET_KEY = str(os.getenv('SECRET_KEY'))
     STRIPE_PUBLISHABLE_KEY = str(os.getenv('STRIPE_PUBLIC_KEY'))
     STRIPE_SECRET_KEY = str(os.getenv('STRIPE_SECRET_KEY'))
@@ -33,6 +31,8 @@ if DEBUG:
 
 else:
     ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
+
+    STRIPE_HOST_DOMAIN = os.environ.get('HEROKU_HOSTNAME')
     SECRET_KEY = os.environ.get('SECRET_KEY')
     STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
     STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
