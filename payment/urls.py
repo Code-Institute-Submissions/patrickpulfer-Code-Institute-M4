@@ -1,11 +1,10 @@
-from django.contrib import admin
 from django.urls import path
+from .webhooks import webhook
 from .views import (
     CreateCheckoutSessionView,
     SuccessView,
     CancelView,
     ProductLandingPageView,
-    stripe_webhook
 )
 
 urlpatterns = [
@@ -14,5 +13,5 @@ urlpatterns = [
     path('create-checkout-session/<pk>/',
          CreateCheckoutSessionView.as_view(), name='create-checkout-session'),
     path('', ProductLandingPageView.as_view(), name='landing'),
-    path('webhooks/stripe/', stripe_webhook, name='stripe-webhook'),
+    path('webhooks/stripe/', webhook, name='stripe-webhook'),
 ]

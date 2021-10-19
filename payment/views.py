@@ -66,7 +66,7 @@ def stripe_webhook(request):
 
     try:
         event = stripe.Webhook.construct_event(
-            payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
+            payload, sig_header, settings.STRIPE_WH_SECRET
         )
     except ValueError as e:
         # Invalid payload
@@ -89,68 +89,10 @@ def stripe_webhook(request):
             subject="Here is your product",
             message=f"Thanks for your purchase. The URL is: {product.url}",
             recipient_list=[customer_email],
-            from_email="your@email.com"
+            from_email="youremail@email.com"
         )
 
     return HttpResponse(status=200)
-
-
-'''
-@csrf_exempt
-def stripe_webhook(request):
-    payload = request.body
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
-    event = None
-
-    try:
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
-        )
-    except ValueError as e:
-        # Invalid payload
-        return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
-        return HttpResponse(status=400)
-
-    # Handle the checkout.session.completed event
-    if event['type'] == 'checkout.session.completed':
-        session = event['data']['object']
-        customer_email = session["customer_details"]["email"]
-        line_items = stripe.checkout.Session.list_line_items(session["id"])
-
-        stripe_price_id = line_items["data"][0]["price"]["id"]
-        price = Price.objects.get(stripe_price_id=stripe_price_id)
-        product = price.product
-
-        send_mail(
-            subject="Here is your product",
-            message=f"Thanks for your purchase. The URL is: {product.url}",
-            recipient_list=[customer_email],
-            from_email="your@email.com"
-        )
-
-    elif event["type"] == "payment_intent.succeeded":
-        intent = event['data']['object']
-
-        stripe_customer_id = intent["customer"]
-        stripe_customer = stripe.Customer.retrieve(stripe_customer_id)
-
-        customer_email = stripe_customer['email']
-        price_id = intent["metadata"]["price_id"]
-
-        price = Price.objects.get(id=price_id)
-        product = price.product
-
-        send_mail(
-            subject="Here is your product",
-            message=f"Thanks for your purchase. The URL is {product.url}",
-            recipient_list=[customer_email],
-            from_email="your@email.com"
-        )
-
-    return HttpResponse(status=200)
-'''
 
 
 class StripeIntentView(View):
@@ -187,85 +129,3 @@ class CustomPaymentView(TemplateView):
             "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLIC_KEY
         })
         return context
-
-
-'''
-def payment_landing(request):
-    if request.user.is_authenticated:
-        print('Logged in')
-    else:
-        print('Please login first!')
-    return render(request, 'payment/landing.html')
-
-
-def payment_success(request):
-    if request.method == 'GET':
-        session_id = request.GET['session_id']
-        print(session_id)
-    return render(request, 'payment/success.html')
-
-
-def payment_cancel(request):
-    return render(request, 'payment/cancel.html')
-
-
-@csrf_exempt
-def stripe_config(request):
-    if request.method == 'GET':
-        stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY}
-        return JsonResponse(stripe_config, safe=False)
-
-
-@ csrf_exempt
-def create_checkout_session(request):
-    if request.method == 'GET':
-        domain_url = 'http://localhost:8000/'
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        try:
-            checkout_session = stripe.checkout.Session.create(
-                client_reference_id=request.user.id if request.user.is_authenticated else None,
-                success_url=domain_url +
-                'payment/success?session_id={CHECKOUT_SESSION_ID}',
-                cancel_url=domain_url + 'payment/cancelled/',
-                payment_method_types=['card'],
-                mode='payment',
-                line_items=[
-                    {
-                        'name': 'Concierge Service',
-                        'quantity': 1,
-                        'currency': 'eur',
-                        'amount': '1000',
-                    }
-                ]
-            )
-            return JsonResponse({'sessionId': checkout_session['id']})
-        except Exception as e:
-            return JsonResponse({'error': str(e)})
-
-
-@csrf_exempt
-def stripe_webhook(request):
-    stripe.api_key = settings.STRIPE_SECRET_KEY
-    endpoint_secret = settings.STRIPE_ENDPOINT_SECRET
-    payload = request.body
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
-    event = None
-
-    try:
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, endpoint_secret
-        )
-    except ValueError as e:
-        # Invalid payload
-        return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
-        return HttpResponse(status=400)
-
-    # Handle the checkout.session.completed event
-    if event['type'] == 'checkout.session.completed':
-        print("Payment was successful.")
-        # TODO: run some custom code here
-
-    return HttpResponse(status=200)
-'''

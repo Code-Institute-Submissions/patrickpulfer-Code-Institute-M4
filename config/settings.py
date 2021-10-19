@@ -32,6 +32,7 @@ if DEBUG:
     STRIPE_PUBLISHABLE_KEY = str(os.getenv('STRIPE_PUBLIC_KEY'))
     STRIPE_SECRET_KEY = str(os.getenv('STRIPE_SECRET_KEY'))
     STRIPE_ENDPOINT_SECRET = str(os.getenv('STRIPE_ENDPOINT_SECRET'))
+    STRIPE_WH_SECRET = str(os.getenv('STRIPE_WH_SECRET'))
 
 else:
     #ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
@@ -41,6 +42,7 @@ else:
     STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
     STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
     STRIPE_ENDPOINT_SECRET = os.environ.get('STRIPE_ENDPOINT_SECRET')
+    STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
 
 
 # Application definition
