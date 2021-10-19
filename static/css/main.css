@@ -36,3 +36,6 @@ body {
 	max-width: 100%; height: auto;
 }
 
+.logo-image {
+	max-width:400px;
+}

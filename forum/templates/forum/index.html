@@ -5,11 +5,11 @@
 
 {% if user.is_authenticated and profile.premium %}
 <div class="container text-center mt-3">
-    <img src="{% static 'img/logo_concierge.png' %}" width="40%" class="img-fluid" alt="logo">
+    <img src="{% static 'img/logo_concierge.png' %}" class="logo-image" alt="logo">
 </div>
 {% else %}
 <div class="container text-center mt-3">
-    <img src="{% static 'img/logo_big_color.png' %}" width="40%" class="img-fluid" alt="logo">
+    <img src="{% static 'img/logo_big_color.png' %}" class="logo-image" alt="logo">
 </div>
 {% endif %}
 
