@@ -25,7 +25,7 @@ ALLOWED_HOSTS = ['django-test-world-forums.herokuapp.com',
                  'localhost', '127.0.0.1', ]
 
 if DEBUG:
-    #ALLOWED_HOSTS = ['localhost', '127.0.0.1', ]
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', ]
 
     STRIPE_HOST_DOMAIN = 'http://127.0.0.1:8000'
     SECRET_KEY = str(os.getenv('SECRET_KEY'))
@@ -35,7 +35,7 @@ if DEBUG:
     STRIPE_WH_SECRET = str(os.getenv('STRIPE_WH_SECRET'))
 
 else:
-    #ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
+    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 
     STRIPE_HOST_DOMAIN = os.environ.get('HEROKU_HOSTNAME')
     SECRET_KEY = os.environ.get('SECRET_KEY')
@@ -91,8 +91,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # All-Auth setttings
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
@@ -212,9 +210,18 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
+DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+
+'''
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'world_forums@example.com'
+    DEFAULT_FROM_EMAIL = 'info@world_forums.com'
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True
@@ -223,3 +230,4 @@ else:
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+'''
