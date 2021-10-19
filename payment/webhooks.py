@@ -3,7 +3,12 @@ from django.http import HttpResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 
-from .webhook_handler import StripeWH_Handler
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.models import User
+from profiles.models import Profile
+
+
+#from .webhook_handler import StripeWH_Handler
 
 import stripe
 
@@ -17,9 +22,12 @@ def webhook(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
     # Get the webhook data and verify its signature
-    payload = request.body
+    payload = request.body.decode('utf-8')
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
     event = None
+    print('**********')
+    print(payload)
+    print('**********')
 
     try:
         event = stripe.Webhook.construct_event(
@@ -27,57 +35,31 @@ def webhook(request):
         )
     except ValueError as e:
         # Invalid payload
+        print('invalid payload')
         return HttpResponse(status=400)
     except stripe.error.SignatureVerificationError as e:
         # Invalid signature
+        print('invalid signature')
         return HttpResponse(status=400)
     except Exception as e:
+        print('invalid anything lol')
         return HttpResponse(content=e, status=400)
 
-    # Set up a webhook handler
-    handler = StripeWH_Handler(request)
-
     if event['type'] == 'checkout.session.completed':
-        session = event['data']['object']
+        payment_date = ['created']
+        session = event['created']['object']
+        session_id = session["id"]
         customer_email = session["customer_details"]["email"]
-        line_items = stripe.checkout.Session.list_line_items(session["id"])
+        currency = session["currency"]
+        payment_status = session["payment_status"]
+        amount_total = session["amount_total"]
 
-        stripe_price_id = line_items["data"][0]["price"]["id"]
-        price = Price.objects.get(stripe_price_id=stripe_price_id)
-        product = price.product
+        user = get_object_or_404(User, email=customer_email)
+        profile = get_object_or_404(Profile, user_id=user.id)
 
-        send_mail(
-            subject="Here is your product",
-            message=f"Thanks for your purchase. The URL is: {product.url}",
-            recipient_list=[customer_email],
-            from_email="patrick.pulfer1@email.com"
-        )
+        profile.premium = True
+        profile.save()
 
-        return HttpResponse(
-            content=f'Webhook received: {event["type"]} and is YES',
-            status=200)
-
-    else:
-        return HttpResponse(
-            content=f'Webhook received: {event["type"]} and is NO',
-            status=200)
-
-
-'''
-    # Map webhook events to relevant handler functions
-    event_map = {
-        'payment_intent.succeeded': handler.handle_payment_intent_succeeded,
-        'payment_intent.payment_failed': handler.handle_payment_intent_payment_failed,
-    }
-
-    # Get the webhook type from Stripe
-    event_type = event['type']
-
-    # If there's a handler for it, get it from the event map
-    # Use the generic one by default
-    event_handler = event_map.get(event_type, handler.handle_event)
-
-    # Call the event handler with the event
-    response = event_handler(event)
-    return response
-'''
+    return HttpResponse(
+        content=f'Webhook received: {event["type"]}',
+        status=200)
