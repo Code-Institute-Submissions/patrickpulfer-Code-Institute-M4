@@ -185,3 +185,19 @@ For development process, please [click here](./documentation/development.md).
   ```
   Note: If you plan to deploy as an actual production server on Linux, you may want to look into [WSGI](https://wsgi.readthedocs.io/en/latest/what.html), [Gunicorn](https://gunicorn.org/) and a proper web server like NGINX.
   <br>
+
+<br>
+
+## Credits
+
+### Media
+
+- The default Post/Discussion picture that appear if you don't supply your own is sourced from [Pexels](https://www.pexels.com/photo/beach-bottle-cold-daylight-292426/) and is free to use. (I just fell in love with this wallpaper!)
+
+- The Logo has been created in [Placeit](https://placeit.net/), a branding service I've used in the past
+
+### Acknowledgements
+
+- I would like to thank [Code Institute](https://codeinstitute.net/) for the learning experience and all the support provided.
+- I would also like to thank my wife for her idea suggestion
+- This is my first application written in Python with Django framework. The usual applies (might not be the most efficient code out there)
