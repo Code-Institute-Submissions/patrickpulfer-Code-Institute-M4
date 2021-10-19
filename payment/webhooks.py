@@ -37,6 +37,33 @@ def webhook(request):
     # Set up a webhook handler
     handler = StripeWH_Handler(request)
 
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+        customer_email = session["customer_details"]["email"]
+        line_items = stripe.checkout.Session.list_line_items(session["id"])
+
+        stripe_price_id = line_items["data"][0]["price"]["id"]
+        price = Price.objects.get(stripe_price_id=stripe_price_id)
+        product = price.product
+
+        send_mail(
+            subject="Here is your product",
+            message=f"Thanks for your purchase. The URL is: {product.url}",
+            recipient_list=[customer_email],
+            from_email="patrick.pulfer1@email.com"
+        )
+
+        return HttpResponse(
+            content=f'Webhook received: {event["type"]} and is YES',
+            status=200)
+
+    else:
+        return HttpResponse(
+            content=f'Webhook received: {event["type"]} and is NO',
+            status=200)
+
+
+'''
     # Map webhook events to relevant handler functions
     event_map = {
         'payment_intent.succeeded': handler.handle_payment_intent_succeeded,
@@ -53,3 +80,4 @@ def webhook(request):
     # Call the event handler with the event
     response = event_handler(event)
     return response
+'''
