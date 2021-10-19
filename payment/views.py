@@ -58,6 +58,7 @@ class ProductLandingPageView(TemplateView):
         return context
 
 
+'''
 @csrf_exempt
 def stripe_webhook(request):
     payload = request.body.decode('utf-8')
@@ -129,3 +130,4 @@ class CustomPaymentView(TemplateView):
             "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLIC_KEY
         })
         return context
+'''

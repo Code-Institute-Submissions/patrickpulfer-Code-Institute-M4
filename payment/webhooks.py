@@ -44,8 +44,8 @@ def webhook(request):
         return HttpResponse(content=e, status=400)
 
     if event['type'] == 'checkout.session.completed':
-        payment_date = ['created']
-        session = event['created']['object']
+        payment_date = event['created']
+        session = event['data']['object']
         session_id = session["id"]
         customer_email = session["customer_details"]["email"]
         currency = session["currency"]
