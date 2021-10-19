@@ -26,9 +26,6 @@ def webhook(request):
     payload = request.body.decode('utf-8')
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
     event = None
-    print('**********')
-    print(payload)
-    print('**********')
 
     try:
         event = stripe.Webhook.construct_event(
@@ -72,5 +69,5 @@ def webhook(request):
         record.save()
 
     return HttpResponse(
-        content=f'Webhook received: {event["type"]}',
+        content=f'Webhook received: {event["type"]} and successfully',
         status=200)
