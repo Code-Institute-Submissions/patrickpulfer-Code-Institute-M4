@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from profiles.models import Profile
+from .models import Payments
 
 
 #from .webhook_handler import StripeWH_Handler
@@ -59,6 +60,16 @@ def webhook(request):
 
         profile.premium = True
         profile.save()
+
+        record = Payments(
+            user=user,
+            payment_success=payment_date,
+            session_id=session_id,
+            amount_total=amount_total,
+            payment_status=payment_status,
+            currency=currency,
+        )
+        record.save()
 
     return HttpResponse(
         content=f'Webhook received: {event["type"]}',
