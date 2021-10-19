@@ -60,7 +60,7 @@ class ProductLandingPageView(TemplateView):
 
 @csrf_exempt
 def stripe_webhook(request):
-    payload = request.body
+    payload = request.body.decode('utf-8')
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
     event = None
 
@@ -80,12 +80,17 @@ def stripe_webhook(request):
         session = event['data']['object']
         customer_email = session["customer_details"]["email"]
         payment_intent = session["payment_intent"]
-        print('Customer Email: ')
-        print(customer_email)
-        print('payment_intent: ')
-        print(payment_intent)
+        line_items = stripe.checkout.Session.list_line_items(session["id"])
+        stripe_price_id = line_items["data"][0]["price"]["id"]
+        price = Price.objects.get(stripe_price_id=stripe_price_id)
+        product = price.product
 
-        # TODO - send an email to the customer
+        send_mail(
+            subject="Here is your product",
+            message=f"Thanks for your purchase. The URL is: {product.url}",
+            recipient_list=[customer_email],
+            from_email="your@email.com"
+        )
 
     return HttpResponse(status=200)
 
