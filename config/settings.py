@@ -18,25 +18,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-#SECRET_KEY = str(os.getenv('SECRET_KEY'))
+# SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 
-ALLOWED_HOSTS = ['django-test-world-forums.herokuapp.com',
-                 'localhost', '127.0.0.1', ]
+#ALLOWED_HOSTS = ['django-test-world-forums.herokuapp.com','localhost', '127.0.0.1', ]
 
 if DEBUG:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', ]
-
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1',
+                     os.environ.get('HOSTNAME_DEBUG')]
+    SECRET_KEY = os.environ.get('SECRET_KEY')
     STRIPE_HOST_DOMAIN = 'http://127.0.0.1:8000'
-    SECRET_KEY = str(os.getenv('SECRET_KEY'))
     STRIPE_PUBLISHABLE_KEY = str(os.getenv('STRIPE_PUBLIC_KEY'))
     STRIPE_SECRET_KEY = str(os.getenv('STRIPE_SECRET_KEY'))
     STRIPE_ENDPOINT_SECRET = str(os.getenv('STRIPE_ENDPOINT_SECRET'))
     STRIPE_WH_SECRET = str(os.getenv('STRIPE_WH_SECRET'))
 
 else:
-    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
-
+    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME'), ]
     STRIPE_HOST_DOMAIN = os.environ.get('HEROKU_HOSTNAME')
     SECRET_KEY = os.environ.get('SECRET_KEY')
     STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
@@ -181,8 +179,8 @@ if 'USE_AWS' in os.environ:
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
     MEDIAFILES_LOCATION = 'media'
 
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}'
 
 
 # Internationalization
@@ -210,15 +208,6 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
-DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
-
-'''
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'info@world_forums.com'
@@ -230,4 +219,3 @@ else:
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
-'''
