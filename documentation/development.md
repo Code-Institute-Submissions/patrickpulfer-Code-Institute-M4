@@ -159,7 +159,9 @@ python3 manage.py test forum
 ### Test 3 - Registration & Authentication
 1. Navigate to App URL (https://django-test-world-forums.herokuapp.com/ for example)
 2. Ensure you are not logged in
-3. Click on "Sign Up" button which should appear in the top right corner
+3. Click on "Sign Up" button which should appear in the top right corner 
+4. Register an account and observe if you receive an email with confirmation link
+5. Click on the link provided in the email and login
 
 
 ## Feedback from End User
