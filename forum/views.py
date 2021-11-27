@@ -39,7 +39,13 @@ def forum(request, param_forum_name):
     return render(request, 'forum/forum_view.html', context)
 
 
-def forum_new(request, param_forum_name):
+def discussion_new(request, param_forum_name):
+    """
+    Function to view the Discussion Post form and save or failback based on form validation
+
+    :type param_forum_name: String
+    :param param_forum_name: Name of current Forum
+    """
     forum = get_object_or_404(Forum, forum_name=param_forum_name)
     if request.method == 'POST' and request.user.is_authenticated:
         discussion_form = ForumNewTopic(request.POST, request.FILES,)
@@ -50,14 +56,21 @@ def forum_new(request, param_forum_name):
             obj.visible = True
             obj.save()
             return HttpResponseRedirect('/forum/discussion/%s' % discussion_form['title'].value())
-
+        else:
+            discussion_form = ForumNewTopic(instance=request.user.profile)
+            context = {
+                'error_message': 'Discussion Title already exists. Please chose a new one.',
+                'forum_data': forum,
+                'discussion_form': discussion_form,
+            }
+            return render(request, 'forum/discussion_new.html', context)
     else:
         discussion_form = ForumNewTopic(instance=request.user.profile)
         context = {
             'forum_data': forum,
             'discussion_form': discussion_form,
         }
-        return render(request, 'forum/forum_new.html', context)
+        return render(request, 'forum/discussion_new.html', context)
 
 
 def discussion_view(request, param_discussion):

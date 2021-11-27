@@ -10,8 +10,6 @@ def profiles(request, username):
     user = get_object_or_404(User, username=username)
     profile = get_object_or_404(Profile, user_id=user.id)
     discussions = Discussion.objects.filter(poster=user.id)
-    ##forum = Forum.objects.filter(forum=discussions.id)
-
     context = {
         'user_data': user,
         'user_profile': profile,
@@ -53,5 +51,4 @@ def profile_delete(request):
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
-
         return render(request, 'profiles/profile_delete.html')

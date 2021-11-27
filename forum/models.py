@@ -29,9 +29,7 @@ class Discussion(models.Model):
     link = models.CharField(max_length=100, blank=True)
     visible = models.BooleanField(default=True)
     premium_only = models.BooleanField(default=False, blank=True)
-
-    title = models.CharField(max_length=100)
-    #body = models.CharField(max_length=1000)
+    title = models.CharField(unique=True, max_length=100)
     body = RichTextField(blank=True, null=True)
 
     def __str__(self):
