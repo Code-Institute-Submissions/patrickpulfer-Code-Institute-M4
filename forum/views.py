@@ -99,6 +99,12 @@ def discussion_view(request, param_discussion):
 
 
 def discussion_edit(request, param_discussion):
+    """
+    Function to view and submit the edit of a Discussion Post
+
+    :type param_discussion:
+    :param param_discussion:
+    """
     discussion = get_object_or_404(Discussion, title=param_discussion)
 
     if request.method == 'POST' and request.user.is_authenticated:
@@ -109,6 +115,14 @@ def discussion_edit(request, param_discussion):
             obj.poster = obj.poster = request.user
             obj.save()
             return HttpResponseRedirect('/forum/discussion/%s' % discussion_form['title'].value())
+        else:
+            discussion_form = Discussion_Edit_Form(instance=discussion)
+            context = {
+                'error_message': 'Discussion Title already exists. Please chose a new one.',
+                'discussion': discussion,
+                'discussion_form': discussion_form,
+            }
+            return render(request, 'forum/discussion_edit.html', context)
     else:
         discussion_form = Discussion_Edit_Form(instance=discussion)
         context = {
