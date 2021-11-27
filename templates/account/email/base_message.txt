@@ -1,4 +1,4 @@
-{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name %}Hello from World Forums!{% endblocktrans %}
+{% load i18n %}{% autoescape off %}{% blocktrans with site_name='World Forums' %}Hello from World Forums!{% endblocktrans %}
 
 {% block content %}{% endblock %}
 
