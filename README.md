@@ -1,4 +1,4 @@
-Milestone 3 submission for [Code Insitute](https://codeinstitute.net)
+Milestone 4 submission for [Code Insitute](https://codeinstitute.net)
 
 ---
 
@@ -12,7 +12,7 @@ Milestone 3 submission for [Code Insitute](https://codeinstitute.net)
 
 ## Project Description
 - World Forums is an one-stop all inclusive forum to share ideas and socialize. It is designed to have modern features and a distinctive look.
-- This project is my submission to the Milestone 3 project at Code Institute Full-Stack Software Development Diploma. For more information about the submission and project requirements, please visit [Development Documentation](./documentation/development.md).
+- This project is my submission to the Milestone 4 project at Code Institute Full-Stack Software Development Diploma. For more information about the submission and project requirements, please visit [Development Documentation](./documentation/development.md).
 
 <br>
 
