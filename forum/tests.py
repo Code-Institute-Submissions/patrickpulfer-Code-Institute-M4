@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 
 class Testing(TestCase):
 
-    # Testing a view
     def test_get_home_page(self):
         print('Testing homepage view... ')
         response = self.client.get('/')

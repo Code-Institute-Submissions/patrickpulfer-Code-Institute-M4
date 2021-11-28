@@ -9,15 +9,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 if DEBUG:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1',
-                     os.environ.get('HOSTNAME_DEBUG')]
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', os.environ.get('HOSTNAME_DEBUG')]
     SECRET_KEY = os.environ.get('SECRET_KEY')
     STRIPE_HOST_DOMAIN = 'http://127.0.0.1:8000'
     STRIPE_PUBLISHABLE_KEY = str(os.getenv('STRIPE_PUBLIC_KEY'))
     STRIPE_SECRET_KEY = str(os.getenv('STRIPE_SECRET_KEY'))
     STRIPE_ENDPOINT_SECRET = str(os.getenv('STRIPE_ENDPOINT_SECRET'))
     STRIPE_WH_SECRET = str(os.getenv('STRIPE_WH_SECRET'))
-
 else:
     ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME'), ]
     STRIPE_HOST_DOMAIN = os.environ.get('HEROKU_HOSTNAME')

@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 
 
-# Forum Model
 class Forum(models.Model):
     forum_name = models.CharField(
         max_length=20, unique=True)
@@ -18,7 +17,6 @@ class Forum(models.Model):
         return str(self.forum_name)
 
 
-# Forum Post Model
 class Discussion(models.Model):
     forum = models.ForeignKey(Forum, blank=True, on_delete=models.CASCADE)
     poster = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
@@ -36,7 +34,6 @@ class Discussion(models.Model):
         return str(self.title)
 
 
-# Comments Model
 class Comment(models.Model):
     poster = models.ForeignKey(
         User, blank=True, on_delete=models.CASCADE, related_name='comments')
