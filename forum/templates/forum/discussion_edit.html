@@ -15,6 +15,7 @@
                 <h4 class="card-title text-left">Edit your discussion</h4><br>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
+                    {{ discussion_form.forum }}
                     <p>
                         <img class="card-img-top" src="{% get_media_prefix %}{{ discussion.picture }}"
                             alt="Discussion image">

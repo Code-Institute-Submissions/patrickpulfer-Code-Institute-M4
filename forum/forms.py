@@ -61,6 +61,7 @@ class Discussion_Edit_Form(forms.ModelForm):
             'picture': forms.FileInput(),
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
+            'forum': forms.HiddenInput(),
             'premium_only': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'visible': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
