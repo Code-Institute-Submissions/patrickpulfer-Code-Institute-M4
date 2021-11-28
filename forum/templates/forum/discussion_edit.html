@@ -16,7 +16,7 @@
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <p>
-                        <img class="card-img-top" src="{% get_media_prefix %}/{{ discussion.picture }}"
+                        <img class="card-img-top" src="{% get_media_prefix %}{{ discussion.picture }}"
                             alt="Discussion image">
                         Update your picture: {{ discussion_form.picture}}
                     </p>

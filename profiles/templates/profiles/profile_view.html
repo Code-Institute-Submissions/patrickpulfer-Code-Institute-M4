@@ -9,7 +9,7 @@
                 <div class="card testimonial-card">
                     <div class="card-up danger-color darken-4"></div>
                     <div class="avatar mx-auto white">
-                        <img src="{% get_media_prefix %}/{{ user_profile.avatar }}" class="rounded-circle" alt="avatar">
+                        <img src="{% get_media_prefix %}{{ user_profile.avatar }}" class="rounded-circle" alt="avatar">
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">{{ user_data.username }}</h4>
@@ -62,7 +62,7 @@
                                 <div class="row align-items-top">
                                     <div class="col-lg-5 col-xl-4">
                                         <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                                            <img class="img-fluid" src="{% get_media_prefix %}/{{ discussion.picture }}"
+                                            <img class="img-fluid" src="{% get_media_prefix %}{{ discussion.picture }}"
                                                 alt="Post Image">
                                             <a href="/discussion/{{ discussion.title }}">
                                                 <div class="mask rgba-white-slight"></div>
