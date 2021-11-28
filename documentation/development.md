@@ -136,7 +136,7 @@ python3 manage.py test forum
 
 ## Bug Testing (Site functionalities)
 
-### Test 1 - Browser & Device Compatibility
+### Browser & Device Compatibility
 
 - Main App has been tested with:
   - Chrome on Android
@@ -146,6 +146,21 @@ python3 manage.py test forum
   - Chrome on Android
   - Safari on iOS
   - Microsoft Edge for Linux, Chrome & Firefox on Desktop
+
+
+### HTML Code Validation
+
+HTML files within the following folders have been tested against https://validator.w3.org/nu/:
+- /templates/
+- /forum/templates/forum
+- /profiles/templates/profiles
+
+Result:
+- Validator showed no errors for the HTML files used in this project.
+
+
+### CSS Code Validation
+
 
 
 ### Test 2 - End User Flow

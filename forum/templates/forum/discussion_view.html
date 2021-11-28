@@ -16,15 +16,15 @@
                     </div>
                     <div class="card-body card-body-cascade text-center force-image-responsive">
                         <h3 class="font-weight-bold title-color"><a>{{ discussion.title }}</a></h3>
-                        <p>{{ discussion.body | safe }}</p>
+                        <div>{{ discussion.body | safe }}</div>
                         <a href="/profile/{{ discussion.poster }}" class="badge badge-danger badge-pill darken-4"><i
                                 class="fas fa-user"></i>
                             {{ discussion.poster }}</a>
                         <a href="/forum/{{ discussion.forum }}" class="badge badge-danger badge-pill darken-4"><i
                                 class="fas fa-book-open"></i>
                             {{ discussion.forum }}</a>
-                        <badge class="badge badge-danger badge-pill darken-4"><i class="fa fa-calendar"></i>
-                            {{ discussion.date_created }}</badge>
+                        <span class="badge badge-danger badge-pill darken-4"><i class="fa fa-calendar"></i>
+                            {{ discussion.date_created }}</span>
                         {% if discussion.poster == request.user %}
                         <br><br><a href="/forum/discussion/{{ discussion.title }}/edit"
                             class="btn btn-success btn-rounded btn-sm">Edit
@@ -35,7 +35,7 @@
                 <div class="mt-5">
                     <div class="container my-5 py-5 px-md-5 z-depth-1">
                         <section class="text-center text-lg-left dark-grey-text">
-                            <div class="text-center font-weight-bold"><span>{{ comments.count}}</span> comments</div>
+                            <h5 class="text-center font-weight-bold"><span>{{ comments.count}}</span> comments</h5>
 
                             {% for comment in comments %}
                             <div class="media d-block d-md-flex mt-4">
@@ -48,8 +48,8 @@
                                     </p>
                                     {{ comment.body }}
                                     <br>
-                                    <badge class="badge badge-danger badge-pill darken-4"><i class="fa fa-calendar"></i>
-                                        {{ comment.date_created }}</badge>
+                                    <span class="badge badge-danger badge-pill darken-4"><i class="fa fa-calendar"></i>
+                                        {{ comment.date_created }}</span>
                                 </div>
                             </div>
                             {% if not forloop.last %}

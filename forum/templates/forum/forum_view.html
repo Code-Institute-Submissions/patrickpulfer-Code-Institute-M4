@@ -15,10 +15,10 @@
             {% endif %}
             {% for discussion in discussions_data %}
                 {% if not profile.premium and forum_data.premium_only %}
-                    <hr class="my-4">
+                    <hr class="my-5">
                     Forum is reserved to Concierge members only.
                 {% else %}
-                    <hr class="my-4">
+                    <hr class="my-5">
                     <div class="row align-items-top">
                         <div class="col-lg-5 col-xl-4">
                             <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
@@ -30,14 +30,14 @@
                         </div>
                         <div class="col-lg-7 col-xl-8 force-image-responsive">
                             <h4 class="font-weight-bold mb-3"><strong>{{ discussion.title }}</strong></h4>
-                            <p class="dark-grey-text discussion_body">{{ discussion.body | safe }}</p>
+                            <div class="dark-grey-text discussion_body">{{ discussion.body | safe }}</div>
                             <p>by <a href="/profile/{{ discussion.poster }}" class="font-weight-bold">{{ discussion.poster }}</a>,
                                 {{ discussion.date_created }} </p>
                             <a href="discussion/{{ discussion.title }}" class=" btn custom-btn btn-md btn-rounded">View
                                 Discussion</a>
                         </div>
                     </div>
-                    <hr class="my-5">
+                    
                 {% endif %}
             {% endfor %}
         </section>

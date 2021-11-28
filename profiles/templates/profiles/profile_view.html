@@ -2,100 +2,99 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="container col-md-4">
-            <div class="card testimonial-card">
-                <div class="card-up danger-color darken-4"></div>
-                <div class="avatar mx-auto white">
-                    <img src="{% get_media_prefix %}/{{ user_profile.avatar }}" class="rounded-circle" alt="avatar">
 
+    <div class="container">
+        <div class="row">
+            <div class="container col-md-4">
+                <div class="card testimonial-card">
+                    <div class="card-up danger-color darken-4"></div>
+                    <div class="avatar mx-auto white">
+                        <img src="{% get_media_prefix %}/{{ user_profile.avatar }}" class="rounded-circle" alt="avatar">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ user_data.username }}</h4>
+                        <hr>
+                        <p>Name: {{ user_data.first_name }} {{ user_data.last_name }}</p>
+                        <p class="text-left">
+                            Joined: {{ user_data.date_joined }}
+                            <br>Email: {{ user_data.email }}
+                            <br>Location: {{ user_profile.location }}
+                            <br>DoB: {{ user_profile.birth_date }}
+                        </p>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h4 class="card-title">{{ user_data.username }}</h4>
-                    <hr>
-                    <p>Name: {{ user_data.first_name }} {{ user_data.last_name }}</p>
-                    <p class="text-left">
-                        Joined: {{ user_data.date_joined }}
-                        <br>Email: {{ user_data.email }}
-                        <br>Location: {{ user_profile.location }}
-                        <br>DoB: {{ user_profile.birth_date }}
-                    </p>
-
-                    </p>
+                <br>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title"><a>Bio</a></h4>
+                        {{ user_profile.bio }}
+                    </div>
                 </div>
-            </div>
-            <br>
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h4 class="card-title"><a>Bio</a></h4>
-                    {{ user_profile.bio }}
-                </div>
-            </div>
-            <div class="card mb-4">
-                <div class="card-body">
-                    {% if user_profile.premium %}
-                    <img class="img-fluid" src="{% static 'img/logo_concierge.png' %}" alt="Concierge Service Badge">
-                    {% elif not user_profile.premium and user_data.username|lower == request.user|lower %}
-                    <a href="/payment/" class="btn btn-success btn-rounded btn-sm"><i class="fas fa-medal"></i>
-                        Go Premium</a>
-                    {% else %}
-                    Member
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-        <div class="container col-md-8">
-            {% if request.user.is_authenticated and user_data.id == request.user.id %}
-            <div class="card">
-                <div class="card-body">
-                    <a href="/profile/update/" class="btn custom-btn btn-rounded btn-sm"><i
-                            class="fas fa-user-edit"></i>
-                        Edit</a>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        {% if user_profile.premium %}
+                        <img class="img-fluid" src="{% static 'img/logo_concierge.png' %}" alt="Concierge Service Badge">
+                        {% elif not user_profile.premium and user_data.username|lower == request.user|lower %}
+                        <a href="/payment/" class="btn btn-success btn-rounded btn-sm"><i class="fas fa-medal"></i>
+                            Go Premium</a>
+                        {% else %}
+                        Member
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-            <br>
-            {% endif %}
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title"><a>Discussions</a></h4>
-                    <p class="card-text">
-                        {% for discussion in discussions %}
-
-                    <div class="row align-items-top">
-                        <div class="col-lg-5 col-xl-4">
-                            <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                                <img class="img-fluid" src="{% get_media_prefix %}/{{ discussion.picture }}"
-                                    alt="Post Image">
-                                <a href="/discussion/{{ discussion.title }}">
-                                    <div class="mask rgba-white-slight"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-7 col-xl-8 force-image-responsive">
-                            <h4 class="font-weight-bold mb-3"><strong>{{ discussion.title }}</strong></h4>
-                            <p class="dark-grey-text">{{ discussion.body|safe }}</p>
-                            <a href="/discussion/{{ discussion.title }}" class="btn custom-btn btn-md btn-rounded">View
-                                Discussion</a>
+            <div class="container col-md-8">
+                {% if request.user.is_authenticated and user_data.id == request.user.id %}
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="/profile/update/" class="btn custom-btn btn-rounded btn-sm"><i
+                                    class="fas fa-user-edit"></i>
+                                Edit</a>
                         </div>
                     </div>
                     <br>
-                    <a href="/forum/{{ discussion.forum }}" class="badge badge-danger badge-pill darken-4"><i
-                            class="fas fa-book-open"></i>
-                        {{ discussion.forum }}</a>
-                    <badge class="badge badge-danger badge-pill darken-4"><i class="fa fa-calendar"></i>
-                        {{ discussion.date_created }}</badge>
-                    <hr class="my-4">
-
-                    {% endfor %}
-                    </p>
+                {% endif %}
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><a>Discussions</a></h4>
+                        <div class="card-text">
+                            {% for discussion in discussions %}
+                                <div class="row align-items-top">
+                                    <div class="col-lg-5 col-xl-4">
+                                        <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
+                                            <img class="img-fluid" src="{% get_media_prefix %}/{{ discussion.picture }}"
+                                                alt="Post Image">
+                                            <a href="/discussion/{{ discussion.title }}">
+                                                <div class="mask rgba-white-slight"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-xl-8 force-image-responsive">
+                                        <h4 class="font-weight-bold mb-3"><strong>{{ discussion.title }}</strong></h4>
+                                        <div class="dark-grey-text">{{ discussion.body|safe }}</div>
+                                        <a href="/discussion/{{ discussion.title }}" class="btn custom-btn btn-md btn-rounded">View
+                                            Discussion</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <a href="/forum/{{ discussion.forum }}" class="badge badge-danger badge-pill darken-4">
+                                    <i class="fas fa-book-open"></i>
+                                    {{ discussion.forum }}
+                                </a>
+                                <span class="badge badge-danger badge-pill darken-4">
+                                    <i class="fa fa-calendar"></i>
+                                    {{ discussion.date_created }}
+                                </span>
+                                <hr class="my-4">
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-{{ discussion.picture }}<br>
-{{ discussion.title }}<br>
-{{ discussion.body }}<br>
+    {{ discussion.picture }}<br>
+    {{ discussion.title }}<br>
+    {{ discussion.body }}<br>
 
 {% endblock %}
