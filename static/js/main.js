@@ -1,3 +1,7 @@
+/*jshint esversion: 6 */
+/*globals $:false, google */
+
+
 // Initializing DatePicker
 $('.datepicker').datepicker({
     format: 'dddd, dd mmm, yyyy',

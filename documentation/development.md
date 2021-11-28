@@ -160,7 +160,10 @@ Result:
 
 
 ### CSS Code Validation
+The file /static/css/main.css has been validated with https://jigsaw.w3.org/css-validator/ and resulted in no error.
 
+
+### JavaScript Code Validation
 
 
 ### Test 2 - End User Flow
