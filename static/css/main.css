@@ -32,10 +32,16 @@ body {
 	color: #990011FF;
 }
 
-.force-image-responsive img {
-	max-width: 100%; height: auto;
+
+@media (min-width: 576px) { 
+	.logo-image {
+		max-width:400px;
+	}
 }
 
-.logo-image {
-	max-width:400px;
+
+/* Overriding CKEditor default image width */
+.force-image-responsive img {
+	max-width: 100% !important; 
+	height: auto !important;
 }
