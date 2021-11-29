@@ -22,5 +22,9 @@ class ProfileForm(forms.ModelForm):
             'bio': forms.Textarea(attrs={'class': 'form-control'}),
             'signature': forms.TextInput(attrs={'class': 'form-control'}),
             'avatar': forms.FileInput(),
-            'birth_date': forms.DateInput(format=('%Y-%m-%d'), attrs={'class': 'form-control dateinput', 'type': 'date'}),
+            'birth_date': forms.DateInput(
+                format=('%Y-%m-%d'), attrs={
+                    'class': 'form-control dateinput', 'type': 'date'
+                    }
+                ),
         }

@@ -6,5 +6,4 @@ urlpatterns = [
     path('<username>', views.profiles, name='profiles'),
     path('update/', views.profile_update, name='profile_update'),
     path('delete/', views.profile_delete, name='profile_delete'),
-
 ]

@@ -6,6 +6,7 @@ class CommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CommentForm, self).__init__(*args, **kwargs)
         self.fields['visible'].initial = True
+
     class Meta:
         model = Comment
         fields = ('body', 'visible')
@@ -21,6 +22,7 @@ class ForumNewTopic(forms.ModelForm):
         super(ForumNewTopic, self).__init__(*args, **kwargs)
         self.fields['visible'].initial = True
         self.fields['premium_only'].initial = False
+
     class Meta:
         model = Discussion
         fields = {
@@ -36,7 +38,9 @@ class ForumNewTopic(forms.ModelForm):
             'picture': forms.FileInput(),
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
-            'premium_only': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'premium_only': forms.CheckboxInput(
+                attrs={'class': 'form-check-input'}
+                ),
             'visible': forms.HiddenInput(),
         }
 
@@ -46,6 +50,7 @@ class Discussion_Edit_Form(forms.ModelForm):
         super(Discussion_Edit_Form, self).__init__(*args, **kwargs)
         self.fields['visible'].initial = True
         self.fields['premium_only'].initial = False
+
     class Meta:
         model = Discussion
         fields = {
@@ -62,6 +67,10 @@ class Discussion_Edit_Form(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
             'forum': forms.HiddenInput(),
-            'premium_only': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-            'visible': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'premium_only': forms.CheckboxInput(
+                attrs={'class': 'form-check-input'}
+                ),
+            'visible': forms.CheckboxInput(
+                attrs={'class': 'form-check-input'}
+                ),
         }
