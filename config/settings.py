@@ -17,14 +17,18 @@ if DEBUG:
     STRIPE_ENDPOINT_SECRET = str(os.getenv('STRIPE_ENDPOINT_SECRET'))
     STRIPE_WH_SECRET = str(os.getenv('STRIPE_WH_SECRET'))
 else:
-    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME'), ]
-    STRIPE_HOST_DOMAIN = os.environ.get('HEROKU_HOSTNAME')
+    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME'),]
     SECRET_KEY = os.environ.get('SECRET_KEY')
+    #STRIPE_HOST_DOMAIN = os.environ.get('HEROKU_HOSTNAME')
+    STRIPE_HOST_DOMAIN = f'https://{os.environ.get("HEROKU_HOSTNAME")}'
+    
     STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
     STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
     STRIPE_ENDPOINT_SECRET = os.environ.get('STRIPE_ENDPOINT_SECRET')
     STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
 
+
+f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
