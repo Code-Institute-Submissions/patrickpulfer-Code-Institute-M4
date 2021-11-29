@@ -1,13 +1,10 @@
+# World Forums, let's share together!
 Milestone 4 submission for [Code Insitute](https://codeinstitute.net)
 
----
-
-<br><br>
 <img src="https://img.shields.io/github/last-commit/patrickpulfer/Code-Institute-M4?style=for-the-badge">
 <img src="https://img.shields.io/github/repo-size/patrickpulfer/Code-Institute-M4?style=for-the-badge">
 <img src="https://img.shields.io/github/languages/count/patrickpulfer/Code-Institute-M4?style=for-the-badge">
 
-# World Forums, let's share together!
 <br><br>
 
 # About
