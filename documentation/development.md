@@ -126,6 +126,9 @@ The file /static/css/main.css has also been positively validated with https://ji
 ### JavaScript Code Validation
 I've parsed my main.js file against https://jshint.com/ and noticed that Stripe's Code is failing. This is something outside of my control to fix.
 
+### PEP8 Code Validation
+I've adjusted my code to be PEP8 compliant as per http://pep8online.com/
+
 ## Django in-build code testing
 I have created a limited Django Unit Testing to specifically test the forum app since some models have chain dependencies. To run these tests, use the following code:
 ~~~bash
