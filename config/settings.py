@@ -28,8 +28,6 @@ else:
     STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
 
 
-f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
