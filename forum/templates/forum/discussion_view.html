@@ -27,7 +27,7 @@
                             {{ discussion.date_created }}</span>
                         {% if discussion.poster == request.user %}
                         <br><br><a href="/forum/discussion/{{ discussion.title }}/edit"
-                            class="btn btn-success btn-rounded btn-sm">Edit
+                            class="btn btn-success btn-rounded btn-sm text-white">Edit
                             Discussion</a>
                         {% endif %}
                     </div>
@@ -62,7 +62,7 @@
                     <form method="post">
                         {% csrf_token %}
                         {{ comment_form.as_p }}
-                        <button class="btn btn-info btn-sm" type="submit"><i class="fas fa-reply"></i> Reply</button>
+                        <button class="btn btn-success btn-sm" type="submit"><i class="fas fa-reply"></i> Reply</button>
                     </form>
                     {% else %}
                     <div class="container text-center">

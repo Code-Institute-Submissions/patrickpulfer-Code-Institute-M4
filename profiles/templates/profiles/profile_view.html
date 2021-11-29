@@ -31,11 +31,11 @@
                     </div>
                 </div>
                 <div class="card mb-4">
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         {% if user_profile.premium %}
                         <img class="img-fluid" src="{% static 'img/logo_concierge.png' %}" alt="Concierge Service Badge">
                         {% elif not user_profile.premium and user_data.username|lower == request.user|lower %}
-                        <a href="/payment/" class="btn btn-success btn-rounded btn-sm"><i class="fas fa-medal"></i>
+                        <a href="/payment/" class="btn btn-success text-white btn-rounded btn-sm animated pulse infinite"><i class="fas fa-medal"></i>
                             Go Premium</a>
                         {% else %}
                         Member
@@ -70,7 +70,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-7 col-xl-8 force-image-responsive">
-                                        <h4 class="font-weight-bold mb-3"><strong>{{ discussion.title }}</strong></h4>
+                                        <h4 class="font-weight-bold mb-3 title-color"><strong>{{ discussion.title }}</strong></h4>
                                         <div class="dark-grey-text">{{ discussion.body|safe }}</div>
                                         <a href="/discussion/{{ discussion.title }}" class="btn custom-btn btn-md btn-rounded">View
                                             Discussion</a>
