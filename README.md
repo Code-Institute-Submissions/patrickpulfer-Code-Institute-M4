@@ -19,10 +19,10 @@ The project uses HTML, CSS, Javascript as the front-end display and functionalit
 
 ## Preview
 Click to open in a new window<br>
-<a href="./documentation/media/preview2.png" target="_blank"><img src="./documentation/media/preview2.png" width="50%"></a>
-<a href="./documentation/media/preview1.png" target="_blank"><img src="./documentation/media/preview1.png" width="50%"></a>
-<a href="./documentation/media/preview3.png" target="_blank"><img src="./documentation/media/preview3.png" width="50%"></a>
-<a href="./documentation/media/preview4.png" target="_blank"><img src="./documentation/media/preview4.png" width="50%"></a>
+<a href="./documentation/media/preview2.png" target="_blank"><img src="./documentation/media/preview2.png" width="60%"></a>
+<a href="./documentation/media/preview1.png" target="_blank"><img src="./documentation/media/preview1.png" width="60%"></a>
+<a href="./documentation/media/preview3.png" target="_blank"><img src="./documentation/media/preview3.png" width="60%"></a>
+<a href="./documentation/media/preview4.png" target="_blank"><img src="./documentation/media/preview4.png" width="60%"></a>
 
 <br>
 
