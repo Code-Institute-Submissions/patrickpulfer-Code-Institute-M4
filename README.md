@@ -8,11 +8,24 @@ Milestone 4 submission for [Code Insitute](https://codeinstitute.net)
 <img src="https://img.shields.io/github/languages/count/patrickpulfer/Code-Institute-M4?style=for-the-badge">
 
 # World Forums, let's share together!
-<br>
+<br><br>
 
-## Project Description
-- World Forums is an one-stop all inclusive forum to share ideas and socialize. It is designed to have modern features and a distinctive look.
-- This project is my submission to the Milestone 4 project at Code Institute Full-Stack Software Development Diploma. For more information about the submission and project requirements, please visit [Development Documentation](./documentation/development.md).
+# About
+World Forums is a forum application (app) that includes a customizable personal profile and the possibility to upgrade accounts to premium status, unlocking a premium badge and a premium-only forum section. This is done via an one-time stripe payment.
+
+
+## The Project
+I created this app for the Full Stack Framework project of [**_Code Institute's_**](https://codeinstitute.net/) Full Stack Software Development course. I have decided to create a forum with monetization option, as this would require an interesting database model as a forum discussion post not only requires the forum as the foreign key, but as well the user that would create the discussion.
+
+The project uses HTML, CSS, Javascript as the front-end display and functionality, including a framework called [Material Design for Bootstrap](https://mdbootstrap.com/) for additional styling. For the backend functionality, the project utilizes Python and the Django framework, SQLite3 and PostgreSQL. 
+
+
+## Preview
+Click to open in a new window<br>
+<a href="./documentation/media/preview2.png" target="_blank"><img src="./documentation/media/preview2.png" width="50%"></a>
+<a href="./documentation/media/preview1.png" target="_blank"><img src="./documentation/media/preview1.png" width="50%"></a>
+<a href="./documentation/media/preview3.png" target="_blank"><img src="./documentation/media/preview3.png" width="50%"></a>
+<a href="./documentation/media/preview4.png" target="_blank"><img src="./documentation/media/preview4.png" width="50%"></a>
 
 <br>
 
@@ -20,64 +33,125 @@ Milestone 4 submission for [Code Insitute](https://codeinstitute.net)
 - https://django-test-world-forums.herokuapp.com/ (Main application)
 - https://django-test-world-forums.herokuapp.com/admin/ (Admin Portal)
 
-<br>
+
+## Database Diagram
+As a discussion post needs to be traced back to the user that created it and as well the section where this post was created, I've designed the database schema to have some tables with two foreign keys. As an example ...
+- A comment within a discussion post will need to link back to its creator and belong to a discussion post
+- A discussion post will need to link back to its creator and belong to a forum
+- If the administrator decides to delete an user or a discussion post, the respective discussions and comments within would need to be traceable and deleted as well (cascade mode)
+<br><img src="./documentation/media/databasediagram.png" width="80%"><br>
+Note: An separate table has been also created for payment information only
 
 ## Features
-Written in python with django framework, the application is designed to bring a feature-rich forum for the end user. Features include:
-- Free to use model forum with modern looks
-- Stripe payment system to get access to premium-only member forums
-- Rich-text discussion creation to impress your friends
-- Customizable user profile, where you can express yourself with bio and your own avatar
-- Ability to view other user's profile and their discussions
-- Admin portal for admins to manage users, payment details, forums, etc.
-- Amazong AWS file storage for static and media files
-<br>
-
-### Preview:
-
-<br>
-
-### Potential future Feature Roadmap
-
-- Progressive Web App with offline mode
-- Ability for users to create custom forums
-  <br><br>
-
-## Technologies Used
-
-This application has been built by using the following technologies:
-
-- <a href="https://www.djangoproject.com/"><img height="30" src="https://cdn.svgporn.com/logos/django.svg"></a>
-    - Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.
-
-- <a href="https://stripe.com/en-ie/payments"><img height="30" src="https://cdn.svgporn.com/logos/stripe.svg"></a>
-    - A complete payments platform, engineered for growth
-
-- <a href="https://www.python.org/"><img height="30" src="https://cdn.svgporn.com/logos/python.svg"></a>
-    - Python is a programming language that lets you work quickly and integrate systems more effectively.
-
-- <a href="https://www.djangoproject.com/"><img height="30" src="https://cdn.svgporn.com/logos/html-5.svg"></a>
-    - Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.
-- [HTML 5](https://www.w3.org/TR/2008/WD-html5-20080122/) / [CSS](https://www.w3.org/Style/CSS/Overview.en.html) / [JavaScript](https://262.ecma-international.org/10.0/index.html)
-- [JQuery](https://jquery.com)
-  - Simplified DOM manipulation.
-- [Font Awesome](https://fontawesome.com/)
-  - Iconic SVG, font, and CSS framework.
-- [Bootstrap](https://getbootstrap.com/)
-  - Front-end framework for web development.
-- [Material Design for Bootstrap](https://mdbootstrap.com/)
-  - The most popular UI KIT for building responsive, mobile-first websites and apps - free for personal & commercial use
-- Python Packages:
-    - [Gunicorn](https://pypi.org/project/gunicorn/), [Pillow](https://pypi.org/project/Pillow/), [psycopg2](https://pypi.org/project/psycopg2/), [boto3](https://pypi.org/project/boto3/), [s3transfer](https://pypi.org/project/s3transfer/), [django-allauth](https://github.com/pennersr/django-allauth), [ckeditor](https://ckeditor.com/) - see [requirements.txt](https://github.com/patrickpulfer/Code-Institute-M4/blob/main/requirements.txt) for full list!
+- **Navbar** will adjust from Login & Sign up to the user's avatar and name based on login status
+- **Flash Messages** will display at the top of the page but below of the navbar if required.
+- **User Registration** will require users to provide a valid email address to receive an email with activation link. It will also require an username that will be the main identifier for the account. 
+- **Login** will require the Username & Password and have the email confirmed.
+- **Logout** - Allows end users to logout of their account by clicking the 'Logout' link in the navbar/sidenav. Upon clicking the button, the user session ends.
+- **Profile Page** of an user can be accessed without having to login. This page will display their avatar, additional details, Bio and discussions they have created. From there, you can directly jump into a discussion or the relevant forum. The email address field will only be visible if the user is logged in.
+- **Edit Profile** allows users to edit their own profile in a separate page. The user will be able to upload a new avatar, add additional details like First Name, Last Name, Location, Date of Birth and a Biography.
+- **Change Password** button can be found within your Profile Edit page. The user will be asked to type the new password twice for extra precaution
+- **Premium Profile** will grant the user a "World Forums Concierge" badge in their profile, as well as access to Concierge only member forum. This can be purchased via an one-time Stripe Payment.
+- **Forum Overview Page** is the site's main homepage. It will show all forums created by the site owner. Concierge forum section will only display for Concierge users
+- **Forum Page** will list discussions created within the forum. If an user is logged in, a button to create a new discussion post is also visible. Post date and a link to the creator's profile is also listed.
+- **Discussion Page** will show the content created (Image, Title, Body, Initiator, Forum and creation date). It will also list and allow users to post comments in rich-text format. If the owner visits his own discussion, an additional button for edit is displayed.
+- **Edit Discussion Page** allows the owner to update its discussion (Image, Title, Body) or delete the post. Clicking on "Delete" will show a modal, warning the user that the action will delete the discussion and the comments permanently.
+- **Image Uploads** are stored in Amazon Web Services for extra security
+- **Admin Portal** allows the site owner and admins to update the payment information (Product Name, Price), edit/delete/create users, forums, posts, comments, etc. This is a very powerful tool and should be kept secure at all time!
 
 <br>
 
-## Development
+# UX
+For this project, I've adopted the methodology of the five planes of UX, which consist of:
+- Strategy / User Stories
+- Scope
+- Structure
+- Skeleton
+- Surface Design
+> “The Elements of User Experience” book written by Jesse James Garrett, one of the founders of Adaptive Path, a user experience consultancy based in San Francisco.
 
-For development process, please [click here](./documentation/development.md).
-<br><br>
 
-## Deployment
+## Strategy / User Stories
+As the owner, I want to:
+1. ... offer a place where I can publicly share interesting stories/news/ideas
+2. ... allow other users to participate with their ideas or share their opinion and feedback on my stories
+3. ... allow users to register on my site to actively participate in our discussions but keep read-only open to unregistered users
+4. ... be able to create forums so that discussions can be organized within them
+5. ... offer a free service but also be able to monetize for exclusive member only content
+
+As an End User or site consumer, I want to:
+1. ... view topics as a guest
+2. ... register for my own account
+3. ... customize my profile with a bio and profile picture 
+4. ... create my own discussions
+5. ... edit my own discussions that I've created
+6. ... add comments to mine and other discussions
+7. ... have an exclusive forum section for premium only
+
+
+## Scope of this Project (based on owner and end user requirement/stories)
+- To create an application that is accessible on mobile, tablet, laptops and desktops and is easy to navigate
+- To create a website with uncluttered, logical and intuitive navigation which is easy to follow
+- To store, manipulate, edit and delete (CRUD) data in a secure database (Postgres for production and SQLite3 for development)
+- To create a monetization strategy for exclusive member access
+- To create an app (website) written with Django framework, ready to be deployed to Heroku
+
+
+## Structure
+- Forum Page (Mobile first approach)
+  - Top:
+    - A navigation bar with Title and a "hamburger" menu if accessed by small screen devices. This menu will allow the user to visit their profile and login/logout
+  - Central:
+    - Forums are displayed as large boxes for intuitive navigation
+    - "Concierge" Premium Forums are displayed first if user is part of the club
+  - Bottom:
+    Simple footer displaying Copyright and Credit of the app creator
+
+- Discussion List Page (Mobile first approach)
+  - Top:
+    - A navigation bar with Title and a "hamburger" menu if accessed by small screen devices. This menu will allow the user to visit their profile and login/logout
+  - Central:
+    - Discussion Name and Description at the top, including a "Create new Post" button for logged users
+    - List of all Discussion posts below, including the Title, the discussion body, link to it's creator and button to "view" the discussion
+  - Footer:
+    - Footer will display the Copyright and the credits for the app creator
+
+- Discussion View Page (Mobile first approach)
+  - Top:
+    - A navigation bar with Title and a "hamburger" menu if accessed by small screen devices. This menu will allow the user to visit their profile and login/logout
+  - Central:
+    - Discussion picture on top, followed by the Title and the actual discussion post
+    - At the end of the post, additional details like link to post creator, link to it's belonging forum and date of the post will be shown
+    - If the logged user is also the creator, he may edit the post via button that appears at the end
+  - Footer:
+    - Footer will display the Copyright and the credits for the app creator
+
+
+## Skeleton
+To be adhered to the structure outlined above, the following wireframes were drafted:
+- User Profile  
+  <img src="./documentation/media/profile_view.png" width="60%">
+- Forum Overview  
+  <img src="./documentation/media/forum_view.png" width="60%">
+- Discussion Overview  
+  <img src="./documentation/media/discussion_view.png" width="60%">
+
+
+## Surface Design
+To distinguish from other popular forum platforms, I've selected a color scheme that is opposite to the standard of blue and, hopefully, pleasant to look at:
+- Main Colour (buttons & titles): <span style="color:#F3F0F1;background-color:#990011FF;"> #990011FF</span>
+- Main background:<span style="color:black;background-color:#FCF6F5FF;">#FCF6F5FF</span>
+- Logo for the project: <img src="./documentation/media/logo.png" width="30%">
+
+<br>
+
+# Testing
+
+I have separated the testing details into a separate [Testing Documentation](./documentation/development.md).
+
+<br>
+
+# Deployment
 
 ### Demo
 - Application can be found at https://django-test-world-forums.herokuapp.com/.
@@ -184,20 +258,43 @@ For development process, please [click here](./documentation/development.md).
   python3 manage.py runserver
   ```
   Note: If you plan to deploy as an actual production server on Linux, you may want to look into [WSGI](https://wsgi.readthedocs.io/en/latest/what.html), [Gunicorn](https://gunicorn.org/) and a proper web server like NGINX.
-  <br>
-
+  
 <br>
 
-## Credits
+# Credits
+
+## Technologies Used
+This application has been built by using the following technologies:
+
+- <a href="https://www.djangoproject.com/"><img height="30" src="https://cdn.svgporn.com/logos/django.svg"></a>
+    - Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.
+
+- <a href="https://stripe.com/en-ie/payments"><img height="30" src="https://cdn.svgporn.com/logos/stripe.svg"></a>
+    - A complete payments platform, engineered for growth
+
+- <a href="https://www.python.org/"><img height="30" src="https://cdn.svgporn.com/logos/python.svg"></a>
+    - Python is a programming language that lets you work quickly and integrate systems more effectively.
+
+- <a href="https://www.djangoproject.com/"><img height="30" src="https://cdn.svgporn.com/logos/html-5.svg"></a>
+    - [HTML 5](https://www.w3.org/TR/2008/WD-html5-20080122/) / [CSS](https://www.w3.org/Style/CSS/Overview.en.html) / [JavaScript](https://262.ecma-international.org/10.0/index.html)
+- [JQuery](https://jquery.com)
+  - Simplified DOM manipulation.
+- [Font Awesome](https://fontawesome.com/)
+  - Iconic SVG, font, and CSS framework.
+- [Bootstrap](https://getbootstrap.com/)
+  - Front-end framework for web development.
+- [Material Design for Bootstrap](https://mdbootstrap.com/)
+  - The most popular UI KIT for building responsive, mobile-first websites and apps - free for personal & commercial use
+- Python Packages:
+    - [Gunicorn](https://pypi.org/project/gunicorn/), [Pillow](https://pypi.org/project/Pillow/), [psycopg2](https://pypi.org/project/psycopg2/), [boto3](https://pypi.org/project/boto3/), [s3transfer](https://pypi.org/project/s3transfer/), [django-allauth](https://github.com/pennersr/django-allauth), [ckeditor](https://ckeditor.com/) - see [requirements.txt](https://github.com/patrickpulfer/Code-Institute-M4/blob/main/requirements.txt) for full list!
+
 
 ### Media
-
 - The default Post/Discussion picture that appear if you don't supply your own is sourced from [Pexels](https://www.pexels.com/photo/beach-bottle-cold-daylight-292426/) and is free to use. (I just fell in love with this wallpaper!)
-
 - The Logo has been created in [Placeit](https://placeit.net/), a branding service I've used in the past
 
-### Acknowledgements
 
+### Acknowledgements
 - I would like to thank [Code Institute](https://codeinstitute.net/) for the learning experience and all the support provided.
 - I would also like to thank my wife for her idea suggestion
 - This is my first application written in Python with Django framework. The usual applies (might not be the most efficient code out there)

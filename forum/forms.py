@@ -39,7 +39,7 @@ class ForumNewTopic(forms.ModelForm):
             'premium_only': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'visible': forms.HiddenInput(),
         }
-        
+
 
 class Discussion_Edit_Form(forms.ModelForm):
     def __init__(self, *args, **kwargs):
