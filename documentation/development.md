@@ -201,19 +201,47 @@ python3 manage.py test forum
 |✅ Clicking on "SUBMIT" should not submit the post if no Title has been input |✅ Same as on Mobile |
 |✅ Clicking on "SUBMIT" should create a Discussion Post |✅ Same as on Mobile |
 
-<br><br>
----
-Same as on Mobile
-|✅ xxxx |✅ xxxx |
+### Discussion Edit
+| Mobile | PC |
+| --- | --- |
+|✅ Discussion Post images should scale appropriately to not cause overflow |✅ Same as on Mobile |
+|❌ "CKEditor input field may overflow and cause a horizontal scrollbar  |✅ CKEditor should be properly scaled |
+|✅ Control buttons should have the following vertical order "SAVE CHANGES", "CANCEL", "DELETE" |✅ Control buttons should all be on the same line |
+|✅ "DELETE" button should present a "Are you sure?" modal |✅ Same as on Mobile |
+|✅ "Cancel" button in "Are you sure?" modal should navigate to Discussion View Page |✅ Same as on Mobile |
+|❌  "Are you sure?" bootstrap modal is not properly scaled |✅ "Are you sure?" bootstrap modal should be properly scaled |
+|✅ "CANCEL" button should navigate to Discussion View Page |✅ Same as on Mobile |
+|✅ "SAVE CHANGES" button should submit the changes and navigate to Discussion View Page|✅ Same as on Mobile |
+
+### Profile View
+| Mobile | PC |
+| --- | --- |
+|✅ Sections should appear by the following order: Details, Bio, Premium, Profile Edit, Discussion List |✅ Details, Bio, Premium sections should appear on the left side while Edit and Discussion Lists on the right |
+|✅ "EDIT" button should only appear if you are viewing own Profile |✅ Same as on Mobile |
+|✅ "EDIT" button should navigate to the Profile Edit Page |✅ Same as on Mobile |
+|✅ Clicking the forum badge icon should navigate to respective forum |✅ Same as on Mobile |
+|✅ Clicking on "VIEW DISCUSSION" button should navigate to respective Discussion Post |✅ Same as on Mobile |
+|✅ Clicking on "Go Premium" button should navigate to the Product Overview Page |✅ Same as on Mobile |
+|✅ Images should be properly scaled and not overflow |✅ Same as on Mobile |
 
 
-Discussion New
-Discussion Edit
-Profile
-Profile Edit
-Login
-Logout
-Registration
-Password Change
-Concierge Product
-Stripe Checkout
+### Profile Edit
+| Mobile | PC |
+| --- | --- |
+|✅ Sections should appear in the following order: Avatar, Status, Details, Bio |✅ Sections should appear as a grid of 4 boxes |
+|✅ "SAVE CHANGES" should appear before "CHANGE PASSWORD"  |✅ "SAVE CHANGES" and "CHANGE PASSWORD" should appear on the same line |
+|✅ Clicking on "SAVE CHANGES" should submit the changes |✅ Same as on Mobile |
+|✅ Clicking on "CHANGE PASSWORD" should navigate to the Password Change Page |✅ Same as on Mobile |
+
+### Logout Page
+| Mobile | PC |
+| --- | --- |
+|✅ Should be appropriately scaled |✅ Same as on Mobile |
+|✅ Clicking on "SIGN OUT" button should end user's session |✅ Same as on Mobile |
+
+### Change Password Page
+| Mobile | PC |
+| --- | --- |
+|✅ Clicking on "Change Password" button with missing fields should not proceed |✅ Same as on Mobile |
+|✅ Clicking on "Forgot Password?" link should navigate to the Forgot Password page |✅ Same as on Mobile |
+|✅ Javascript should add the class "form-control" to all input fields |✅ Same as on Mobile|
