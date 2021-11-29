@@ -164,10 +164,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 """
 Email backend setup
 """
-#if 'DEVELOPMENT' in os.environ:
-#    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-#    DEFAULT_FROM_EMAIL = 'info@world_forums.com'
-#else:
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587

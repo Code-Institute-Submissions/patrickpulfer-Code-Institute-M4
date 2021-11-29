@@ -18,7 +18,6 @@ class CreateCheckoutSessionView(View):
         price = Price.objects.get(id=self.kwargs["pk"])
         user = request.user
         YOUR_DOMAIN = settings.STRIPE_HOST_DOMAIN
-        print(YOUR_DOMAIN)
         checkout_session = stripe.checkout.Session.create(
             customer_email=user.email,
             payment_method_types=['card'],
